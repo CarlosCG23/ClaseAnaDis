@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class ControladorUsuario {
     public DatosJSONcomplejoPADRE NewDatosPadres = new DatosJSONcomplejoPADRE();
 
+    // POST de todo (JSON Complejo)
     @PostMapping(path = "/DatosJSONcomplejoPADRE")
     public ResponseEntity<DatosJSONcomplejoPADRE> nuevoEmpresa() {
 
@@ -19,5 +20,16 @@ public class ControladorUsuario {
         this.NewDatosPadres = Leer.LecturaJSONcomplejo();
 
         return new ResponseEntity<DatosJSONcomplejoPADRE>(this.NewDatosPadres, HttpStatus.CREATED);
+    }
+
+    // POST de un dato nuevo del JSON complejo
+    @PostMapping(path = "/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ArrayList<DatosJSONComplejoHIJO>> nuevoUsuario(@RequestBody DatosJSONComplejoHIJO nuevoDato) {
+
+        this.NewDatosPadres.getDatos().add(nuevoDato);
+
+        return new ResponseEntity<ArrayList<DatosJSONComplejoHIJO>>(this.NewDatosPadres.getDatos(), HttpStatus.CREATED);
     }
 }
