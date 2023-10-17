@@ -1,7 +1,10 @@
 package com.CLASEANADIS.anadis;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import java.util.ArrayList;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class DatosJSONcomplejoPADRE {
     ArrayList<DatosJSONComplejoHIJO> Datos = new ArrayList<>();
     OtrosJSONComplejoHIJO Otros = new OtrosJSONComplejoHIJO();

@@ -1,11 +1,21 @@
 package com.CLASEANADIS.anadis;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class DatosJSONsimple {
+    @JsonProperty("ip_from")
     public long ip_from;
+    @JsonProperty("ip_to")
     public long ip_to;
+    @JsonProperty("country_code")
     public String country_code;
+    @JsonProperty("country_name")
     public String country_name;
+    @JsonProperty("latitude")
     public double latitude;
+    @JsonProperty("longitude")
     public float longitude;
 
     public DatosJSONsimple() {
