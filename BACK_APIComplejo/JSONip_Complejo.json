@@ -1,0 +1,25 @@
+{
+    "Datos": [
+        {
+            "ip_from": 2532573184,
+            "ip_to": 2532638719,
+            "country_code": "ES",
+            "country_name": "Spain",
+            "latitude": 40.4165,
+            "longitude": -3.70256
+        },
+        {
+            "ip_from": 2532638720,
+            "ip_to": 2532704255,
+            "country_code": "US",
+            "country_name": "United States of America",
+            "latitude": 43.16105,
+            "longitude": -77.61963
+        }
+    ],
+    "Otros":
+    {
+        "nombre": "Carlos",
+        "edad": 26
+    }
+}
