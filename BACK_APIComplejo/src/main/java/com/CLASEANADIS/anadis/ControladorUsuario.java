@@ -9,5 +9,15 @@ import java.util.ArrayList;
 
 @RestController
 public class ControladorUsuario {
+    public DatosJSONcomplejoPADRE NewDatosPadres = new DatosJSONcomplejoPADRE();
 
+    @PostMapping(path = "/DatosJSONcomplejoPADRE")
+    public ResponseEntity<DatosJSONcomplejoPADRE> nuevoEmpresa() {
+
+        LectorJSON Leer = new LectorJSON();
+
+        this.NewDatosPadres = Leer.LecturaJSONcomplejo();
+
+        return new ResponseEntity<DatosJSONcomplejoPADRE>(this.NewDatosPadres, HttpStatus.CREATED);
+    }
 }
