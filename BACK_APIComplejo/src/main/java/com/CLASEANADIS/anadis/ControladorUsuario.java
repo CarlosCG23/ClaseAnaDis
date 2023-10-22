@@ -32,4 +32,8 @@ public class ControladorUsuario {
 
         return new ResponseEntity<ArrayList<DatosJSONComplejoHIJO>>(this.NewDatosPadres.getDatos(), HttpStatus.CREATED);
     }
+
+    // GET de todo
+    @GetMapping("/DatosJSONcomplejoPADRE")
+    public DatosJSONcomplejoPADRE GetDatosPadre(){return this.NewDatosPadres;}
 }
