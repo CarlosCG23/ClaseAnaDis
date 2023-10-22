@@ -36,4 +36,48 @@ public class ControladorUsuario {
     // GET de todo
     @GetMapping("/DatosJSONcomplejoPADRE")
     public DatosJSONcomplejoPADRE GetDatosPadre(){return this.NewDatosPadres;}
+
+    // GET del arraylist de Datos
+    @GetMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO")
+    public ArrayList<DatosJSONComplejoHIJO> GetDatos(){return this.NewDatosPadres.getDatos();}
+
+    // GET de un solo dato en base al atributo ip_from
+    @GetMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO/{ip_from}")
+    public ResponseEntity<DatosJSONComplejoHIJO> GetDato(@PathVariable long ip_from){
+
+        DatosJSONComplejoHIJO auxDatos = new DatosJSONComplejoHIJO();
+        //System.out.println(NewDatosPadres.getDatos().size());
+
+        for (int i = 0; i < NewDatosPadres.getDatos().size(); i++) {
+            if (NewDatosPadres.getDatos().get(i).getIp_from() == ip_from) {
+                auxDatos = NewDatosPadres.getDatos().get(i);
+                return new ResponseEntity<DatosJSONComplejoHIJO>(auxDatos, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // GET del atributo country_code de un dato en base al atributo ip_from
+    @GetMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO/{ip_from}/CountryCode")
+    public ResponseEntity<String> GetDatoContryCode(@PathVariable long ip_from){
+
+        String auxDatos;
+
+        for (int i = 0; i < NewDatosPadres.getDatos().size(); i++) {
+            if (NewDatosPadres.getDatos().get(i).getIp_from() == ip_from) {
+                auxDatos = NewDatosPadres.getDatos().get(i).country_code;
+                return new ResponseEntity<String>(auxDatos, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // GET de objeto "Otros"
+    @GetMapping("/DatosJSONcomplejoPADRE/OtrosJSONcomplejoHIJO")
+    public OtrosJSONComplejoHIJO GetOtros(){return this.NewDatosPadres.getOtros();}
+
+    // GET del atributo nombre del objeto otros
+    @GetMapping("/DatosJSONcomplejoPADRE/OtrosJSONcomplejoHIJO/Nombre")
+    public String GetOtrosNombre(){return this.NewDatosPadres.getOtros().getNombre();}
+
 }
