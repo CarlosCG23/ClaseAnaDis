@@ -99,4 +99,38 @@ public class ControladorUsuario {
         NewDatosPadres.getOtros().setEdad(0);
         return new ResponseEntity<OtrosJSONComplejoHIJO>(this.NewDatosPadres.getOtros(), HttpStatus.OK);
     }
+
+    // PUT de un solo dato en base al atributo ip_from
+    @PutMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO/{ip_from}")
+    public ResponseEntity<ArrayList<DatosJSONComplejoHIJO>> PutDato(@RequestBody DatosJSONComplejoHIJO nuevoDato, @PathVariable long ip_from){
+
+        long auxIP_From, auxIP_to;
+
+        for (int i = 0; i < NewDatosPadres.getDatos().size(); i++){
+            if(NewDatosPadres.getDatos().get(i).getIp_from() == ip_from){
+
+                auxIP_From = NewDatosPadres.getDatos().get(i).ip_from;
+                auxIP_to = NewDatosPadres.Datos.get(i).ip_to;
+
+                NewDatosPadres.getDatos().set(i, nuevoDato);
+
+                // ip_from e ip_to no se pueden modificar
+                NewDatosPadres.getDatos().get(i).setIp_from(auxIP_From);
+                NewDatosPadres.getDatos().get(i).setIp_to(auxIP_to);
+
+
+                return new ResponseEntity<ArrayList<DatosJSONComplejoHIJO>>(this.NewDatosPadres.getDatos(), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // PUT del objeto "Otros"
+    @PutMapping("/DatosJSONcomplejoPADRE/OtrosJSONcomplejoHIJO")
+    public ResponseEntity<OtrosJSONComplejoHIJO> PutOtro(@RequestBody OtrosJSONComplejoHIJO nuevoDato){
+
+        NewDatosPadres.getOtros().setNombre(nuevoDato.getNombre());
+        NewDatosPadres.getOtros().setEdad(nuevoDato.edad);
+        return new ResponseEntity<OtrosJSONComplejoHIJO>(this.NewDatosPadres.getOtros(), HttpStatus.OK);
+    }
 }
