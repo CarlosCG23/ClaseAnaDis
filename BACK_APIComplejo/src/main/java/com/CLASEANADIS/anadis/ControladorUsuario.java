@@ -80,4 +80,23 @@ public class ControladorUsuario {
     @GetMapping("/DatosJSONcomplejoPADRE/OtrosJSONcomplejoHIJO/Nombre")
     public String GetOtrosNombre(){return this.NewDatosPadres.getOtros().getNombre();}
 
+    // DELETE de un solo dato en base al atributo ip_from
+    @DeleteMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO/{ip_from}")
+    public ResponseEntity<ArrayList<DatosJSONComplejoHIJO>> DeleteDato(@PathVariable long ip_from){
+        for (int i = 0; i < NewDatosPadres.getDatos().size(); i++){
+            if(NewDatosPadres.getDatos().get(i).getIp_from() == ip_from){
+                NewDatosPadres.getDatos().remove(i);
+                return new ResponseEntity<ArrayList<DatosJSONComplejoHIJO>>(this.NewDatosPadres.getDatos(), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // DELETE del objeto "otros"
+    @DeleteMapping("/DatosJSONcomplejoPADRE/OtrosJSONcomplejoHIJO")
+    public ResponseEntity<OtrosJSONComplejoHIJO> DeleteOtro(){
+        NewDatosPadres.getOtros().setNombre("");
+        NewDatosPadres.getOtros().setEdad(0);
+        return new ResponseEntity<OtrosJSONComplejoHIJO>(this.NewDatosPadres.getOtros(), HttpStatus.OK);
+    }
 }
