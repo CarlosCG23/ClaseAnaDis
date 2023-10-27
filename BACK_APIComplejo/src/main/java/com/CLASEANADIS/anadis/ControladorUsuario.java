@@ -13,7 +13,7 @@ public class ControladorUsuario {
 
     // POST de todo (JSON Complejo)
     @PostMapping(path = "/DatosJSONcomplejoPADRE")
-    public ResponseEntity<DatosJSONcomplejoPADRE> nuevoEmpresa() {
+    public ResponseEntity<DatosJSONcomplejoPADRE> nuevoDatos() {
 
         LectorJSON Leer = new LectorJSON();
 
@@ -26,7 +26,7 @@ public class ControladorUsuario {
     @PostMapping(path = "/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ArrayList<DatosJSONComplejoHIJO>> nuevoUsuario(@RequestBody DatosJSONComplejoHIJO nuevoDato) {
+    public ResponseEntity<ArrayList<DatosJSONComplejoHIJO>> nuevoDato(@RequestBody DatosJSONComplejoHIJO nuevoDato) {
 
         this.NewDatosPadres.getDatos().add(nuevoDato);
 

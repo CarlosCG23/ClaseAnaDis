@@ -1,10 +1,11 @@
-package com.CLASEANADIS.anadis;
+package com.AnaDis.APISimple;
+
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
-public class DatosJSONsimple {
+public class DatosJSONSimple {
     @JsonProperty("ip_from")
     public long ip_from;
     @JsonProperty("ip_to")
@@ -18,10 +19,10 @@ public class DatosJSONsimple {
     @JsonProperty("longitude")
     public float longitude;
 
-    public DatosJSONsimple() {
+    public DatosJSONSimple() {
     }
 
-    public DatosJSONsimple(long ip_from, long ip_to, String country_code, String country_name, double latitude, float longitude) {
+    public DatosJSONSimple(long ip_from, long ip_to, String country_code, String country_name, double latitude, float longitude) {
         this.ip_from = ip_from;
         this.ip_to = ip_to;
         this.country_code = country_code;
@@ -42,7 +43,7 @@ public class DatosJSONsimple {
         return ip_to;
     }
 
-    public void setIp_to(int ip_to) {
+    public void setIp_to(long ip_to) {
         this.ip_to = ip_to;
     }
 
@@ -90,3 +91,4 @@ public class DatosJSONsimple {
                 '}';
     }
 }
+
