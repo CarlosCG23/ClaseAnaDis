@@ -80,13 +80,13 @@ public class DatosJSONComplejoHIJO {
 
     @Override
     public String toString() {
-        return "DatosJSONComplejoHIJO{" +
-                "ip_from=" + ip_from +
-                ", ip_to=" + ip_to +
-                ", country_code='" + country_code + '\'' +
-                ", country_name='" + country_name + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+        return "{\n" +
+                "\t\"ip_from\": " + ip_from +
+                ",\n\t\"ip_to\": " + ip_to +
+                ",\n\t\"country_code\": \"" + country_code + '\"' +
+                ",\n\t\"country_name\": \"" + country_name + '\"' +
+                ",\n\t\"latitude\": " + latitude +
+                ",\n\t\"longitude\": " + longitude +
+                "\n}";
     }
 }
