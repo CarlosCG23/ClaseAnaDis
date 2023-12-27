@@ -1,11 +1,13 @@
 package org.vaadin.example;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class DatosJSONcomplejoPADRE {
+    static Gson gson = new Gson();
     ArrayList<DatosJSONComplejoHIJO> Datos = new ArrayList<>();
     OtrosJSONComplejoHIJO Otros = new OtrosJSONComplejoHIJO();
 
@@ -39,5 +41,16 @@ public class DatosJSONcomplejoPADRE {
                 "Datos=" + Datos +
                 ", Otros=" + Otros +
                 '}';
+    }
+
+    static DatosJSONcomplejoPADRE DatosJSONComplejoPadreApi(){
+
+        DatosJSONcomplejoPADRE DatosJSONComplejoPadre;
+
+        String StringDatosJSONComplejoPadre = GET.getData("DatosJSONcomplejoPADRE", null);
+
+        DatosJSONComplejoPadre = gson.fromJson(StringDatosJSONComplejoPadre, DatosJSONcomplejoPADRE.class);
+
+        return DatosJSONComplejoPadre;
     }
 }

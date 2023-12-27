@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 @RestController
@@ -13,11 +14,14 @@ public class ControladorUsuario {
 
     // POST de todo (JSON Complejo)
     @PostMapping(path = "/DatosJSONcomplejoPADRE")
-    public ResponseEntity<DatosJSONcomplejoPADRE> nuevoDatos() {
+    public ResponseEntity<DatosJSONcomplejoPADRE> nuevoDatos() throws FileNotFoundException {
 
         LectorJSON Leer = new LectorJSON();
+        EscritorCCJSON escritorCCJSON = new EscritorCCJSON();
 
         this.NewDatosPadres = Leer.LecturaJSONcomplejo();
+
+        escritorCCJSON.EscrituraCC(NewDatosPadres.Datos);
 
         return new ResponseEntity<DatosJSONcomplejoPADRE>(this.NewDatosPadres, HttpStatus.CREATED);
     }
@@ -56,6 +60,22 @@ public class ControladorUsuario {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    /*
+    @GetMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO/ArrayListCC/{country_code}")
+    public ResponseEntity<ArrayList<DatosJSONComplejoHIJO>> GetDatoCC(@PathVariable String country_code){
+
+        ArrayList<DatosJSONComplejoHIJO> auxDatos = new ArrayList<>();
+        //System.out.println(NewDatosPadres.getDatos().size());
+
+        for (int i = 0; i < NewDatosPadres.getDatos().size(); i++) {
+            if (NewDatosPadres.getDatos().get(i).getCountry_code().equals(country_code)) {
+                auxDatos.add(NewDatosPadres.getDatos().get(i));
+            }
+        }
+        return new ResponseEntity<ArrayList<DatosJSONComplejoHIJO>>(auxDatos, HttpStatus.OK);
+    }
+    */
 
     // GET del atributo country_code de un dato en base al atributo ip_from
     @GetMapping("/DatosJSONcomplejoPADRE/DatosJSONcomplejoHIJO/{ip_from}/CountryCode")
