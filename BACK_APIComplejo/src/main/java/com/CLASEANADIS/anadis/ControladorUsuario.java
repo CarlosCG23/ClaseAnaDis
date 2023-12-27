@@ -17,11 +17,10 @@ public class ControladorUsuario {
     public ResponseEntity<DatosJSONcomplejoPADRE> nuevoDatos() throws FileNotFoundException {
 
         LectorJSON Leer = new LectorJSON();
-        EscritorCCJSON escritorCCJSON = new EscritorCCJSON();
+        //EscritorCCJSON escritorCCJSON = new EscritorCCJSON();
+        //escritorCCJSON.EscrituraCC(NewDatosPadres.Datos);
 
         this.NewDatosPadres = Leer.LecturaJSONcomplejo();
-
-        escritorCCJSON.EscrituraCC(NewDatosPadres.Datos);
 
         return new ResponseEntity<DatosJSONcomplejoPADRE>(this.NewDatosPadres, HttpStatus.CREATED);
     }

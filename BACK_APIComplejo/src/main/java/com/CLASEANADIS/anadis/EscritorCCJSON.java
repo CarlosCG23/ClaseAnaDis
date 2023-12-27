@@ -22,7 +22,7 @@ public class EscritorCCJSON {
                 .collect(Collectors.groupingBy(DatosJSONComplejoHIJO::getCountry_code));
 
         groupedByMsCode.values().forEach(list -> list.forEach(dataPoint -> dataPoint.setCountry_code(null)));
-        System.out.println(groupedByMsCode);
+        //System.out.println(groupedByMsCode);
 
         // Creamos un nuevo archivo JSON con los resultados
         try (FileWriter writer = new FileWriter("CountryCode.json")) {

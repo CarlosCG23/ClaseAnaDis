@@ -35,4 +35,30 @@ public class LectorJSON {
 
         return datosJSONcomplejoPADRE;
     }
+
+    public PaisesJSONComplejoPADRE LecturaJSONcomplejoPaises(){
+        String json;
+        PaisesJSONComplejoPADRE paisesJSONcomplejoPADRE = new PaisesJSONComplejoPADRE();
+
+        Gson gson = new Gson();
+
+        json = "";
+
+        try (BufferedReader br = new BufferedReader(new FileReader("CountryCode.json"))){
+            String linea;
+
+            while ((linea = br.readLine()) != null){
+                json+= linea;
+                //System.out.println(linea);
+            }
+
+            paisesJSONcomplejoPADRE = gson.fromJson(json, PaisesJSONComplejoPADRE.class);
+            System.out.println("Sesion guardada con exito");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return paisesJSONcomplejoPADRE;
+    }
 }

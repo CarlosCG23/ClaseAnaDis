@@ -12,8 +12,12 @@ public class AnadisApplication {
 		DatosJSONcomplejoPADRE datosJSONcomplejoPADRE = new DatosJSONcomplejoPADRE();
 		datosJSONcomplejoPADRE = lectorJSON.LecturaJSONcomplejo();
 		System.out.println(datosJSONcomplejoPADRE);
-		*/
 
+		LectorJSON lectorJSON = new LectorJSON();
+		PaisesJSONComplejoPADRE paisesJSONComplejoPADRE = new PaisesJSONComplejoPADRE();
+		paisesJSONComplejoPADRE = lectorJSON.LecturaJSONcomplejoPaises();
+		System.out.println(paisesJSONComplejoPADRE);
+		*/
 		SpringApplication.run(AnadisApplication.class, args);
 	}
 
