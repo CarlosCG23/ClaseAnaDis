@@ -14,10 +14,10 @@ public class GridConfig {
 
     static List<String> columnNames = List.of("ip_from", "ip_to", "country_code", "country_name", "latitude", "longitude");
     static List<String> headers = List.of("IP From", "IP To", "Country Code", "Country Name", "Latitude", "Longitude");
+
     static <DatosJSONSimple> void configureGrid(Grid<org.vaadin.example.DatosJSONSimple> grid)
     {
-
-        grid.setItems(DatosJSONcomplejoPADRE.DatosJSONComplejoPadreApi().getDatos());
+        grid.setItems(org.vaadin.example.DatosJSONSimple.DatosJSONSimpleApi());
         grid.setColumns("ip_from", "ip_to", "country_code", "country_name", "latitude", "longitude");
 
         for (int i = 0; i < columnNames.size(); i++) {

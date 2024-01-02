@@ -15,15 +15,15 @@ import java.net.http.HttpResponse;
 import static org.vaadin.example.MainView.*;
 
 public class PUT {
-/*
-    static void putData(String url1, String url2, long ip_from, DatosJSONComplejoHIJO datosJSONComplejoHIJO){
+
+    static void putData(String url1, String url2, long ip_from, DatosJSONSimple datosJSONSimple){
         try {
             String resource = String.format(api + url1 + "/" + url2 + "/" + ip_from);
-            if(datosJSONComplejoHIJO != null){
+            if(datosJSONSimple != null){
                 request= HttpRequest
                         .newBuilder(new URI(resource))
                         .header("Content-Type","application/json")
-                        .PUT(HttpRequest.BodyPublishers.ofString(datosJSONComplejoHIJO.toString()))
+                        .PUT(HttpRequest.BodyPublishers.ofString(datosJSONSimple.toString()))
                         .build();
                 response=cliente.send(request,HttpResponse.BodyHandlers.ofString());
             }
@@ -45,7 +45,7 @@ public class PUT {
         }
     }
 
-    static VerticalLayout createDialogLayoutModificarDato(DatosJSONComplejoHIJO AuxDatosJSONComplejoHijo) {
+    static VerticalLayout createDialogLayoutModificarDato(DatosJSONSimple AuxDatosJSONSimple) {
         H2 headline = new H2("Añadir Dato");
         headline.getStyle().set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
@@ -58,28 +58,28 @@ public class PUT {
         TextField ipFromFile = new TextField();
         ipFromFile.setLabel("IP From");
         ipFromFile.setReadOnly(true);
-        ipFromFile.setValue(String.valueOf(AuxDatosJSONComplejoHijo.ip_from));
+        ipFromFile.setValue(String.valueOf(AuxDatosJSONSimple.ip_from));
 
         TextField ipToFile = new TextField();
         ipToFile.setLabel("IP To");
         ipToFile.setReadOnly(true);
-        ipToFile.setValue(String.valueOf(AuxDatosJSONComplejoHijo.ip_to));
+        ipToFile.setValue(String.valueOf(AuxDatosJSONSimple.ip_to));
 
         TextField countryCodeFile = new TextField();
         countryCodeFile.setLabel("Country Code");
-        countryCodeFile.setPlaceholder(AuxDatosJSONComplejoHijo.country_code);
+        countryCodeFile.setPlaceholder(AuxDatosJSONSimple.country_code);
 
         TextField countryNameFile = new TextField();
         countryNameFile.setLabel("Country Name");
-        countryNameFile.setPlaceholder(AuxDatosJSONComplejoHijo.country_name);
+        countryNameFile.setPlaceholder(AuxDatosJSONSimple.country_name);
 
         TextField latitudeFile = new TextField();
         latitudeFile.setLabel("Latitude");
-        latitudeFile.setPlaceholder(String.valueOf(AuxDatosJSONComplejoHijo.latitude));
+        latitudeFile.setPlaceholder(String.valueOf(AuxDatosJSONSimple.latitude));
 
         TextField longitudeFile = new TextField();
         longitudeFile.setLabel("Longitude");
-        longitudeFile.setPlaceholder(String.valueOf(AuxDatosJSONComplejoHijo.longitude));
+        longitudeFile.setPlaceholder(String.valueOf(AuxDatosJSONSimple.longitude));
 
 
         DatoFormLayout.add(ipFromFile, ipToFile, countryCodeFile, countryNameFile, latitudeFile, longitudeFile);
@@ -96,14 +96,14 @@ public class PUT {
         });
         buttonEditar.addClickListener(e -> {
 
-            DatosJSONComplejoHIJO Aux = new DatosJSONComplejoHIJO();
+            DatosJSONSimple Aux = new DatosJSONSimple();
 
             Aux.setIp_from(Long.parseLong(ipFromFile.getValue()));
             Aux.setIp_to(Long.parseLong(ipToFile.getValue()));
 
             if(countryCodeFile.isEmpty())
             {
-                Aux.setCountry_code(AuxDatosJSONComplejoHijo.country_code);
+                Aux.setCountry_code(AuxDatosJSONSimple.country_code);
             }
             else
             {
@@ -112,7 +112,7 @@ public class PUT {
 
             if(countryNameFile.isEmpty())
             {
-                Aux.setCountry_name(AuxDatosJSONComplejoHijo.country_name);
+                Aux.setCountry_name(AuxDatosJSONSimple.country_name);
             }
             else
             {
@@ -121,7 +121,7 @@ public class PUT {
 
             if(latitudeFile.isEmpty())
             {
-                Aux.setLatitude(AuxDatosJSONComplejoHijo.latitude);
+                Aux.setLatitude(AuxDatosJSONSimple.latitude);
             }
             else
             {
@@ -130,16 +130,16 @@ public class PUT {
 
             if(longitudeFile.isEmpty())
             {
-                Aux.setLongitude(AuxDatosJSONComplejoHijo.longitude);
+                Aux.setLongitude(AuxDatosJSONSimple.longitude);
             }
             else
             {
                 Aux.setLongitude(Float.parseFloat(longitudeFile.getValue()));
             }
 
-            PUT.putData("DatosJSONcomplejoPADRE", "DatosJSONcomplejoHIJO", AuxDatosJSONComplejoHijo.ip_from, Aux);
+            PUT.putData("DatosJSONSimple", "Dato", AuxDatosJSONSimple.ip_from, Aux);
 
-            GridConfig.configureGrid(gridDatosJSONComplejoHIJO);
+            GridConfig.configureGrid(gridDatosJSONSimple);
 
             dialog.close();
             dialog.removeAll();
@@ -152,6 +152,4 @@ public class PUT {
                 .set("max-width", "100%").set("height", "80%");
         return dialogLayout;
     }
-
- */
 }

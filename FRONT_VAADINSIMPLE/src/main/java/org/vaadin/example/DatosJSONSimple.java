@@ -5,8 +5,12 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+
+import static org.vaadin.example.MainView.*;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class DatosJSONSimple {
@@ -96,15 +100,16 @@ public class DatosJSONSimple {
                 "\n}";
     }
 
-    static ArrayList<DatosJSONSimple> DatosJSONComplejoPadreApi(){
+    static ArrayList<DatosJSONSimple> DatosJSONSimpleApi(){
+        Type datos = new TypeToken<ArrayList<DatosJSONSimple>>(){}.getType();
 
-        DatosJSONSimple DatosJSONSimple;
+        ArrayList<DatosJSONSimple> datosJSONSimple;
 
-        String StringDatosJSONSimple = GET.getData("DatosJSONcomplejoPADRE", null);
+        String StringDatosJSONSimple = GET.getData("DatosJSONSimple", null);
 
-        DatosJSONSimple = gson.fromJson(StringDatosJSONComplejoPadre, DatosJSONcomplejoPADRE.class);
+        datosJSONSimple = gson.fromJson(StringDatosJSONSimple, datos);
 
-        return DatosJSONComplejoPadre;
+        return datosJSONSimple;
     }
 }
 

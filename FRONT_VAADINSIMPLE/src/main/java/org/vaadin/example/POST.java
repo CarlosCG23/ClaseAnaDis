@@ -55,7 +55,7 @@ public class POST {
             e.printStackTrace();
         }
     }
-/*
+
     static VerticalLayout createDialogLayoutAnadirDato() throws ParseException {
 
         H2 headline = new H2("Añadir Dato");
@@ -118,14 +118,14 @@ public class POST {
 
         buttonGuardar.addClickListener(e -> {
 
-            DatosJSONComplejoHIJO Aux = new DatosJSONComplejoHIJO(Long.parseLong(ipFromFile.getValue()),
+            DatosJSONSimple Aux = new DatosJSONSimple(Long.parseLong(ipFromFile.getValue()),
                     Long.parseLong(ipToFile.getValue()),
                     countryCodeFile.getValue(), countryNameFile.getValue(),
                     Double.parseDouble(latitudeFile.getValue()), Float.parseFloat(longitudeFile.getValue()));
 
-            POST.postData("DatosJSONcomplejoPADRE", "DatosJSONcomplejoHIJO", Aux);
+            POST.postData("DatosJSONSimple", "Dato", Aux);
 
-            GridConfig.configureGrid(gridDatosJSONComplejoHIJO);
+            GridConfig.configureGrid(gridDatosJSONSimple);
 
             dialog.close();
             dialog.removeAll();
@@ -138,6 +138,4 @@ public class POST {
                 .set("max-width", "100%").set("height", "80%");
         return dialogLayout;
     }
-    */
-
 }

@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 import static org.vaadin.example.MainView.*;
 
 public class DELETE {
-/*
+
     static void deleteData(String url1, String url2, long ip_from){
         try {
             String resource;
@@ -41,12 +41,10 @@ public class DELETE {
         }
     }
 
-    static void removeInvitation(DatosJSONComplejoHIJO Aux) {
+    static void removeInvitation(DatosJSONSimple Aux) {
         //System.out.println(Aux.ip_from);
-        DELETE.deleteData("DatosJSONcomplejoPADRE", "DatosJSONcomplejoHIJO", Aux.ip_from);
+        DELETE.deleteData("DatosJSONSimple", "Dato", Aux.ip_from);
 
-        GridConfig.configureGrid(gridDatosJSONComplejoHIJO);
+        GridConfig.configureGrid(gridDatosJSONSimple);
     }
-
- */
 }

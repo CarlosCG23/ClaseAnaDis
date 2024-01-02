@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
@@ -24,6 +26,7 @@ import java.lang.reflect.Type;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,17 +55,63 @@ public class MainView extends VerticalLayout {
     final Gson gson = new Gson();
 
     ArrayList<DatosJSONSimple> DatosJSONSimpleList = new ArrayList<>();
+    DatosJSONSimple AuxDatosJSONSimple = new DatosJSONSimple();
+
+    static Grid<DatosJSONSimple> gridDatosJSONSimple = new Grid<>(DatosJSONSimple.class);
+
+    Button buttonAnadirDato = new Button("Añadir Dato");
+
+    static Dialog dialog = new Dialog();
 
     public MainView() {
+
         POST.postData("DatosJSONSimple", null, null);
 
         Type listaDatosHijo = new TypeToken<ArrayList<DatosJSONSimple>>() {}.getType();
         DatosJSONSimpleList = gson.fromJson(GET.getData("DatosJSONSimple", null), listaDatosHijo);
 
+        GridConfig.configureGrid(gridDatosJSONSimple);
+
+        gridDatosJSONSimple.addItemClickListener(
+                event -> {
+                    AuxDatosJSONSimple = new DatosJSONSimple(event.getItem().ip_from, event.getItem().ip_to,
+                            event.getItem().country_code, event.getItem().country_name,
+                            event.getItem().latitude, event.getItem().longitude);
+                    dialog.getElement().setAttribute("aria-label", "Equipo seleccionado");
+                    VerticalLayout dialogLayout = PUT.createDialogLayoutModificarDato(AuxDatosJSONSimple);
+                    dialog.add(dialogLayout);
+                    dialog.setCloseOnEsc(false);
+                    dialog.setCloseOnOutsideClick(false);
+                    dialog.setDraggable(true);
+                    dialog.setResizable(true);
+                    dialog.open();
+                });
+
+        buttonAnadirDato.addClickListener(
+                e -> {
+                    VerticalLayout dialogLayout = null;
+                    try {
+                        dialogLayout = POST.createDialogLayoutAnadirDato();
+                    } catch (ParseException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    dialog.add(dialogLayout);
+                    dialog.setCloseOnEsc(false);
+                    dialog.setCloseOnOutsideClick(false);
+                    dialog.setDraggable(true);
+                    dialog.setResizable(true);
+                    dialog.open();
+                    if (!dialog.isOpened()){
+                        dialog.removeAll();
+                        DatosJSONSimpleList.clear();
+                    }
+                }
+        );
+
         Tab tabDatas = new Tab("Datas");
         Div pageDatas = new Div();
         pageDatas.setWidth(90f, Unit.PERCENTAGE);
-        pageDatas.add();
+        pageDatas.add(gridDatosJSONSimple, buttonAnadirDato);
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
         pageDatas.setVisible(true);
