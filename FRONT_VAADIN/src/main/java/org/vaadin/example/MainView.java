@@ -84,6 +84,22 @@ public class MainView extends VerticalLayout {
     static Grid<DatosJSONComplejoHIJO> gridDatosJSONComplejoHIJO = new Grid<>(DatosJSONComplejoHIJO.class);
 
     public MainView() {
+        /*
+        ArrayList <DatosJSONComplejoHIJO> pruebaDH = new ArrayList<>();
+
+        pruebaDH.add(new DatosJSONComplejoHIJO(123456789, 98765432, "qwerty", "poiuytr"
+                , 2.22, (long) 9.99));
+        pruebaDH.add(new DatosJSONComplejoHIJO(123456789, 98765432, "qwerty", "poiuytr"
+                , 2.22, (long) 9.99));
+        pruebaDH.add(new DatosJSONComplejoHIJO(123456789, 98765432, "qwerty", "poiuytr"
+                , 2.22, (long) 9.99));
+
+        OtrosJSONComplejoHIJO pruebaO = new OtrosJSONComplejoHIJO("Carlos", 12);
+
+        DatosJSONcomplejoPADRE pruebaDP = new DatosJSONcomplejoPADRE(pruebaDH, pruebaO);
+
+        System.out.println(pruebaDP);
+         */
         // ----------------------------------------------
         // llamada a Post Inicial de todo a la api
         POST.postData("DatosJSONcomplejoPADRE", null, null);
