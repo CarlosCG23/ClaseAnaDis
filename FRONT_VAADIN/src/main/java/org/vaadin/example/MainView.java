@@ -75,6 +75,9 @@ public class MainView extends VerticalLayout {
     Button buttonAnadirDato = new Button("Añadir Dato");
     static Dialog dialog = new Dialog();
 
+    static Select<String> comboBox = new Select<>();
+    static List<String> ComboBoxItems = Arrays.asList("ES", "US");
+
     static String api = "http://localhost:8085/";
 
     DatosJSONComplejoHIJO AuxDatosJSONComplejoHijo = new DatosJSONComplejoHIJO();
@@ -156,22 +159,18 @@ public class MainView extends VerticalLayout {
         // ----------------------------------------------
 
         // Crear el combo box
-        Select<String> comboBox;
-        comboBox = new Select<>();
+
         comboBox.setLabel("Selecciona un elemento");
-        List<String> items = Arrays.asList("ES", "US");
-        comboBox.setItems(items);
-        //comboBox.getStyle().set()
+        comboBox.setItems(ComboBoxItems);
 
         // Añadir un listener al combo box para manejar la selección
         comboBox.addValueChangeListener(event -> {
             String selectedItem = event.getValue();
-            Notification.show(selectedItem);
-            //updateGridData(selectedItem);
+            updateGridData(selectedItem);
         });
 
-        // Inicializar el grid con datos
-        updateGridData(items.get(0));
+
+
 
         // ----------------------------------------------
         // Creacion de los text fields del tab "Otros"
@@ -211,7 +210,7 @@ public class MainView extends VerticalLayout {
         pageCB.add(comboBox);
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
-        pageCB.setVisible(true);
+        pageCB.setVisible(false);
         // ----------------------------------------------
 
         // ----------------------------------------------
@@ -241,24 +240,9 @@ public class MainView extends VerticalLayout {
     }
 
     private void updateGridData(String selectedItem) {
-        // Aquí debes actualizar los datos del grid según el elemento seleccionado en el combo box
-        // Puedes utilizar un servicio, base de datos, etc. para obtener los datos y actualizar el grid
-        List<String> newData = obtenerDatosSegunSeleccion(selectedItem);
 
-        // Actualizar el grid con los nuevos datos
-        // grid.setDataProvider(new ListDataProvider<>(newData));
-    }
+        Notification.show(selectedItem);
 
-    private List<String> obtenerDatosSegunSeleccion(String selectedItem) {
-        // Aquí deberías implementar la lógica para obtener los datos según el elemento seleccionado
-        // En este ejemplo, simplemente devolvemos una lista de elementos basada en la selección
-        switch (selectedItem) {
-            case "ES":
-                return Arrays.asList("Dato A1", "Dato A2", "Dato A3");
-            case "US":
-                return Arrays.asList("Dato B1", "Dato B2", "Dato B3");
-            default:
-                return Arrays.asList();
-        }
+
     }
 }

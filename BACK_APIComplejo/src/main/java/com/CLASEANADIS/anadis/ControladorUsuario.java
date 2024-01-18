@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @RestController
 public class ControladorUsuario {
-    public DatosJSONcomplejoPADRE NewDatosPadres = new DatosJSONcomplejoPADRE();
+    public static DatosJSONcomplejoPADRE NewDatosPadres = new DatosJSONcomplejoPADRE();
 
     // POST de todo (JSON Complejo)
     @PostMapping(path = "/DatosJSONcomplejoPADRE")
